@@ -17,5 +17,5 @@
        (fact "the number should vary from call to call"
              (let [number1 (core/generate-number)
                    number2 (core/generate-number)]
-               (= number1 number2) => :falsey))
+               (= number1 number2) => false))
        )
