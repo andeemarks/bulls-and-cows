@@ -6,19 +6,17 @@
        (facts "when generating numbers"
               (facts "for each number generated"
                      (dotimes [_ 100]
-                       (fact "the length of the number should be 4"
-                             (let [number (core/generate-number)]
-                               (count number) => 4))
-                       (fact "the number should be entirely numeric"
-                             (let [number (core/generate-number)]
+                       (let [number (core/generate-number)]
+                         (fact "the length of the number should be 4"
+                               (count number) => 4)
+                         (fact "the number should be entirely numeric"
                                (filterv #(re-find #"[0-9]" (str %)) number) => number
-                               ))
-                       (fact "the number should contain unique digits"
-                             (let [number (core/generate-number)]
+                               )
+                         (fact "the number should contain unique digits"
                                (count (set number)) => (count number)
-                               ))
-                       (fact "the number should vary from call to call"
-                             (let [number1 (core/generate-number)
-                                   number2 (core/generate-number)]
-                               (= number1 number2) => false))
-                       ))))
+                               )
+                         (fact "the number should vary from call to call"
+                               (let [number1 (core/generate-number)
+                                     number2 (core/generate-number)]
+                                 (= number1 number2) => false))
+                             )))))
