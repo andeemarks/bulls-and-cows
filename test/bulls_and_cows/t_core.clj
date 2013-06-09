@@ -1,15 +1,21 @@
 (ns bulls_and_cows.t-core
   (:use midje.sweet)
-  (:use [bulls_and_cows.core]))
+  (:require [bulls_and_cows.core :as core]))
 
-(facts "about `first-element`"
-  (fact "it normally returns the first element"
-    (first-element [1 2 3] :default) => 1
-    (first-element '(1 2 3) :default) => 1)
-
-  ;; I'm a little unsure how Clojure types map onto the Lisp I'm used to.
-  (fact "default value is returned for empty sequences"
-    (first-element [] :default) => :default
-    (first-element '() :default) => :default
-    (first-element nil :default) => :default
-    (first-element (filter even? [1 3 5]) :default) => :default))
+(facts "the rules of bulls and cows"
+       (fact "the length of the number should be 4"
+             (let [number (core/generate-number)]
+               (count number) => 4))
+       (fact "the number should be entirely numeric"
+             (let [number (core/generate-number)]
+               (filterv #(re-find #"[0-9]" (str %)) number) => number
+               ))
+       (fact "the number should contain unique digits"
+             (let [number (core/generate-number)]
+               (count (set number)) => (count number)
+               ))
+       (fact "the number should vary from call to call"
+             (let [number1 (core/generate-number)
+                   number2 (core/generate-number)]
+               (= number1 number2) => :falsey))
+       )
