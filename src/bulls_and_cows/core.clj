@@ -7,15 +7,23 @@
   (if (= answer-digit guess-digit)
     '(:bull)))
 
-(defn determine-correctness [number guess]
+(defn find-bulls [number guess]
   (let [digit-from-answer (first number)
         digit-from-guess (first guess)]
     (if digit-from-answer
       (flatten (conj
                 (compare-respective-digits digit-from-answer digit-from-guess)
-                (determine-correctness (rest number) (rest guess)))))))
+                (find-bulls (rest number) (rest guess)))))))
+
+(defn find-cows [number guess found-bulls]
+  (let [number-cows (-
+                     (count (clojure.set/intersection (set number) (set guess)))
+                     (count found-bulls))]
+    (repeat number-cows :cow)))
 
 (defn guess-number [number guess]
   (let [guess-as-seq (map #(Character/digit % 10) (str guess))]
-    (let [correctness (determine-correctness number guess-as-seq)]
-      (remove nil? correctness))))
+    (let [bulls (remove nil? (find-bulls number guess-as-seq))
+          cows (find-cows number guess-as-seq bulls)
+          score (conj bulls cows)]
+      (flatten score))))
