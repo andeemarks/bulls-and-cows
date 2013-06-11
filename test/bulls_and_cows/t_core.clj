@@ -19,13 +19,17 @@
                 (future-fact "the numbers should vary from call to call"
                       (count generated-numbers) => 100)
                 ))
-       (future-facts "when guessing numbers"
-                     (facts "with no correct digits"
-                            (fact "nothing should be returned"))
-                     (facts "with a correct digit"
+       (facts "when guessing numbers"
+              (facts "with no correct digits"
+                     (fact "nothing should be returned"
+                           (core/guess-number '(1 2 3 4) "5678") => nil))
+              (facts "with all correct digits"
+                     (fact "4 bulls should be returned"
+                           (core/guess-number '(1 2 3 4) "1234") => '(:bull :bull :bull :bull)))
+              (future-facts "with a correct digit"
                             (fact "a bull should be returned when the digit is in the correct position")
                             (fact "a cow should be returned when the digit is in an incorrect position")
                             )
-                     (facts "with several correct digits"
+              (future-facts "with several correct digits"
                             (fact "a set of bulls and cows should be returned"))
-                     ))
+              ))
