@@ -26,10 +26,11 @@
               (facts "with all correct digits"
                      (fact "4 bulls should be returned"
                            (core/guess-number '(1 2 3 4) "1234") => '(:bull :bull :bull :bull)))
-              (future-facts "with a correct digit"
-                            (fact "a bull should be returned when the digit is in the correct position")
-                            (fact "a cow should be returned when the digit is in an incorrect position")
-                            )
+              (facts "with a correct digit"
+                     (fact "a bull should be returned when the digit is in the correct position"
+                           (core/guess-number '(1 5 6 7) "1234") => '(:bull))
+                     (future-fact "a cow should be returned when the digit is in an incorrect position")
+                     )
               (future-facts "with several correct digits"
                             (fact "a set of bulls and cows should be returned"))
               ))
