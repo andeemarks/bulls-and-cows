@@ -9,13 +9,14 @@
                        (dotimes [_ 100]
                          (let [number (core/generate-number)]
                            (fact "the length of the number should be 4"
+                                 (count (set number)) => 4)
                                  ;;(println (conj (list number) generated-numbers))
                            (fact "the number should be entirely numeric"
                                  (filterv #(re-find #"[0-9]" (str %)) number) => number
                                  )
                            (fact "the number should contain unique digits"
                                  (count (set number)) => (count number)
-                                 )))))
+                                 ))))
                 (future-fact "the numbers should vary from call to call"
                       (count generated-numbers) => 100)
                 ))
