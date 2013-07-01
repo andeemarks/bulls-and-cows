@@ -10,7 +10,6 @@
                          (let [number (core/generate-number)]
                            (fact "the length of the number should be 4"
                                  (count (set number)) => 4)
-                                 ;;(println (conj (list number) generated-numbers))
                            (fact "the number should be entirely numeric"
                                  (filterv #(re-find #"[0-9]" (str %)) number) => number
                                  )
