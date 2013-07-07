@@ -5,3 +5,4 @@ pom.xml
 /targets/
 .lein*
 /target/
+/local-m2/
