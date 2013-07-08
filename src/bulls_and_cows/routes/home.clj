@@ -1,6 +1,7 @@
 (ns bulls-and-cows.routes.home
   (:use compojure.core)
   (:require [bulls-and-cows.views.layout :as layout]
+            [bulls-and-cows.views :as views]
             [bulls-and-cows.util :as util]))
 
 (defn home-page []
@@ -10,6 +11,10 @@
 (defn about-page []
   (layout/render "about.html"))
 
+(defn start-page []
+  (views/guess-form))
+  
 (defroutes home-routes
   (GET "/" [] (home-page))
+  (GET "/start" [] (start-page))
   (GET "/about" [] (about-page)))
