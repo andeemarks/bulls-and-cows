@@ -1,6 +1,6 @@
 (ns bulls_and_cows.t-core
   (:use midje.sweet)
-  (:require [bulls_and_cows.model.core :as core]))
+  (:require [bulls-and-cows.model.core :as core]))
 
 (facts "the rules of bulls and cows"
        (facts "when generating numbers"

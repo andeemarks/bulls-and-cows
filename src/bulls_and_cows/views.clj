@@ -1,8 +1,8 @@
 (ns bulls-and-cows.views
-  (:use [hiccup core page form]))
+  (:use [hiccup element core page form]))
 
 (defn guess-form []
   (html5
-   (form-to [:post "/guess"]
+   (form-to [:post "/submit-guess"]
             (text-field :guess)
             (submit-button "Try this!"))))
