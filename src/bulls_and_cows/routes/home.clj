@@ -12,7 +12,7 @@
   (layout/render "about.html"))
 
 (defn start-page []
-  (views/guess-form))
+  (layout/render "header.html" {:content (views/guess-form)}))
   
 (defroutes home-routes
   (GET "/" [] (home-page))

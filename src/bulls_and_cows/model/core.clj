@@ -1,4 +1,4 @@
-(ns bulls_and_cows.core)
+(ns bulls_and_cows.model.core)
 
 (defn generate-number []
   (take 4 (shuffle (range 10))))
