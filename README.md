@@ -1,13 +1,19 @@
 # bulls-and-cows
 
-The project uses [Midje](https://github.com/marick/Midje/).
+FIXME
 
-## How to run the tests
+## Prerequisites
 
-`lein midje` will run all tests.
+You will need [Leiningen][1] 2.0 or above installed.
 
-`lein midje namespace.*` will run only tests beginning with "namespace.".
+[1]: https://github.com/technomancy/leiningen
 
-`lein midje :autotest` will run all the tests indefinitely. It sets up a
-watcher on the code files. If they change, only the relevant tests will be
-run again.
+## Running
+
+To start a web server for the application, run:
+
+    lein ring server
+
+## License
+
+Copyright © 2013 FIXME

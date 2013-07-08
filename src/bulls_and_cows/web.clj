@@ -8,8 +8,8 @@
 
 (defroutes main-routes
   (GET "/" [] (index-page))
-  (route/resources "/")
-  (route/not-found "Page not found"))
+  (POST "/guess" [] (guess-page))
+  (route/not-found "<h1>Page not found</h1>"))
 
 (def app
   (-> (handler/site main-routes)

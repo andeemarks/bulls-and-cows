@@ -1,22 +1,31 @@
-(defproject bulls-and-cows "0.0.1-SNAPSHOT"
-  :description "Cool new project to do things and stuff"
-
-  :dependencies [
-                 [org.clojure/clojure "1.4.0"]
-                 [hiccup "1.0.0"]
+(defproject bulls-and-cows "0.1.0-SNAPSHOT"
+  :description "FIXME: write description"
+  
+  :url "http://example.com/FIXME"
+  
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                 [lib-noir "0.6.6"]
                  [compojure "1.1.5"]
-                 ]
-
-  :local-repo "local-m2"
+                 [midje "1.6-alpha2"]
+                 [ring-server "0.2.8"]
+                 [clabango "0.5"]
+                 [com.taoensso/timbre "2.1.2"]
+                 [com.postspectacular/rotor "0.1.0"]
+                 [com.taoensso/tower "1.7.1"]
+                 [markdown-clj "0.9.28"]]
   
-  :plugins [[lein-ring "0.8.5"]
-            [lein-deps-tree "0.1.2"]
-            ]
+  :plugins [[lein-ring "0.8.5"]]
   
-  :ring {:handler bulls_and_cows.web/app}
+  :ring {:handler bulls-and-cows.handler/war-handler
+         :init    bulls-and-cows.handler/init
+         :destroy bulls-and-cows.handler/destroy}
   
-  :profiles {:dev {:dependencies [
-                                  [expectations "1.4.49"]
-                                  [midje "1.6-alpha2"]
-                                  ]}})
+  :profiles
+  {:production {:ring {:open-browser? false
+                       :stacktraces?  false
+                       :auto-reload?  false}}
+   
+   :dev {:dependencies [[ring-mock "0.1.5"]
+                        [ring/ring-devel "1.1.8"]]}}
   
+  :min-lein-version "2.0.0")

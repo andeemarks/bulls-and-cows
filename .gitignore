@@ -1,8 +1,11 @@
+/target
+/lib
+/classes
+/checkouts
 pom.xml
-*jar
-/lib/
-/classes/
-/targets/
-.lein*
-/target/
+*.jar
+*.class
+/.lein-*
+/.env
+bulls_and_cows.log
 /local-m2/
